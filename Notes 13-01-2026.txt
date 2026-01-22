@@ -1,0 +1,67 @@
+DAY-1:
+DATA:
+Data is raw information collected from multiple sources and processed into a structured, reliable format for analysis and business use.
+Data has been classified into 3 types. they are
+•	Structured Data
+•	Semi-Structured Data
+•	Unstructured Data
+Structured Data:
+Structured Data are Data that have a well-defined and rigid structure and can be formatted in row and column format.
+Usually, the row represents the individual data(e.g.: data about a user) and the column represents the attribute of data(e.g.: the first name of the user).
+Examples:
+•	Mobile Numbers
+•	Aadhar Number
+•	Data about a currency
+•	Data stored in relational databases
+Semi-Structured Data:
+Semi-structured data are Data that may have a defined structure but they may or may not follow the structure.
+These Data are usually stored in Non-Relational Databases Such as MongoDB, Redis, and Neo4j.
+Examples:
+•	JSON Files
+•	XML Files
+•	Name of the user(A user may or may not have a middle name)
+•	Data from APIs.
+•	Metadata about Any type of File
+•	Emails
+Unstructured Data:
+Unstructured data are data that don’t have a well-defined structure and cannot be formatted in a row and column format.
+These data are stored in file systems and other storage. Usually, Images and Video Files are classified as Unstructured Data.
+Examples:
+•	Image and Video Files
+•	Voice Recordings
+•	Flat Files
+•	Social Media Posts
+•	Medical Record(Such as Scan Documents)
+Data Engineering – Definition:
+Data engineering focuses on creating data pipelines, managing data infrastructure, and ensuring data quality so that data analysts, data scientists, and applications can efficiently use data.
+Data Engineering Life Cycle:
+	The data engineering lifecycle is the end-to-end process of turning raw data into usable, trusted data for analytics and decision-making.
+The data engineering lifecycle is divided into five main stages:
+•	Generation: Collecting data from various source systems.
+•	Storage: Safely storing data for future processing and analysis.
+•	Ingestion: Bringing data into a centralized system.
+•	Transformation: Converting data into a format that is useful for analysis.
+•	Serving Data: Providing data to end-users for decision-making and operational purposes.
+ETL Process:
+ETL is the traditional technique of extracting raw data, transforming it as required for the users and storing it in data warehouses. ELT was later developed, with ETL as its base. The three operations in ETL and ELT are the same, except that their order of processing is slightly different. This change in sequence was made to overcome some drawbacks.
+Extract: It is the process of extracting raw data from all available data sources such as databases, files, ERP, CRM or any other.
+Transform: The extracted data is immediately transformed as required by the user.
+Load: The transformed data is then loaded into the data warehouse from where the users can access it.
+ELT Process:
+Extraction, Load and Transform (ELT) is the technique of extracting raw data from the source, storing it in the data warehouse of the target server and preparing it for end-stream users. ELT consists of three different operations performed on the data:
+Extract: Extracting data is the process of identifying data from one or more sources. The sources may include databases, files, ERP, CRM, or any other useful source of data.
+Load: Loading is the process of storing the extracted raw data in a data warehouse or data lake.
+Transform: Data transformation is the process in which the raw data from the source is transformed into the target format required for analysis
+Data pipeline:
+	A data pipeline is an automated flow that takes raw data from source systems, processes it, and delivers clean, usable data to a target system.
+Data Pipeline Architecture:
+Here is the representation of data Pipeline Architecture:
+Ingestion Layer: It retrieves data from an assortment of sources ranging from databases to APIs or even event streams.
+Processing Layer: Another operation on data involves the analysis of the said data followed by data cleaning through tools such as spark or Hadoop.
+Storage Layer: Held in data lakes, warehouses or other databases, data was kept for future reference or as a back up to be analyzed later.
+Monitoring Layer: It is the authority that is charged with the responsibility of providing quality data in the right time and increasing the efficiency of the system.
+Consumption Layer: Delivers the final data to BI tools or machine learning models where the data is analyzed at the next level for decision making.
+DATA LAKE:
+A data lake stores vast amounts of raw, unprocessed data (structured, semi-structured, unstructured) for flexible, future analysis (like machine learning), using a "schema-on-read" approach
+DATA WARE HOUSE:
+data warehouse stores clean, transformed, structured data optimized for business intelligence (BI) and reporting, using a predefined "schema-on-write" for fast, consistent queries by business users.

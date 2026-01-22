@@ -1,0 +1,71 @@
+Day-3:
+
+what is Database:
+		Database is used for storing structured data.
+
+database management system:
+			A Database Management System (DBMS) is software that manages databases, acting as an interface for users and applications to create, store, organize, retrieve, update, and delete data efficiently and securely, ensuring data integrity, consistency, and easy access.
+
+SQL:
+	Structured Query Language (SQL) is the standard language used to interact with relational databases.
+1.It allows users to store, retrieve, update and manage data efficiently through simple commands.
+2.It is known for its user-friendly syntax and powerful capabilities, SQL is widely used across industries.
+
+SCHEMA:
+	schema serves as a blueprint for organizing and structuring data within a database.
+SQL Commands:
+	SQL commands are fundamental building blocks used to perform given operations on database.
+DDL - Data Definition Language:
+
+		DDL consists of SQL commands that can be used for defining, altering and deleting database structures such as tables, indexes and schemas.t simply deals with descriptions of the database schema and is used to create and modify the structure of database objects in the database
+
+DQL - Data Query Language:
+		DQL is used to fetch data from the database. The main command is SELECT, which retrieves records based on the query. The output is returned as a result set (a temporary table) that can be viewed or used in applications.
+
+DML - Data Manipulation Language:
+		DML commands are used to manipulate the data stored in database tables. With DML, you can insert new records, update existing ones, delete unwanted data or retrieve information.
+
+DCL - Data Control Language:
+		DCL includes commands such as GRANT and REVOKE which mainly deal with the rights, permissions and other controls of the database system. These commands are used to control access to data in the database by granting or revoking permissions.
+
+TCL - Transaction Control Language:
+		Transactions group a set of tasks into a single execution unit. Each transaction begins with a specific task and ends when all the tasks in the group are successfully completed. If any of the tasks fail, transaction fails. Therefore, a transaction has only two results: success or failure.
+
+CREATE DATABASE:
+
+	The CREATE DATABASE statement is used to create a new SQL database.
+Syntax:
+	CREATE DATABASE databasename;
+
+CREATE TABLE:
+
+	The CREATE TABLE statement is used to create a new table in a database.
+Syntax:
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+PRIMARY KEY AND FOREIGN KEY:
+			the primary key uniquely identifies each row in a table, while the foreign key links data between two tables by referencing the primary key of another table. 
+
+CREATE TABLE Orders (
+    OrderID int PRIMARY KEY,
+    OrderNumber int,
+    CustomerID int,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+SQL CHECK Constraint:
+
+	The CHECK constraint is used to limit the value range that can be placed in a column.If you define a CHECK constraint on a column it will allow only certain values for this column.
+If you define a CHECK constraint on a table it can limit the values in certain columns based on values in other columns in the row.
+
+
+
+
+
+

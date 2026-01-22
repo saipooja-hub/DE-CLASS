@@ -1,0 +1,44 @@
+DAY-2:
+BIG DATA:
+	Big data refers to extremely large, complex datasets (structured, unstructured, semi-structured) that traditional tools can't manage, characterized by massive Volume, rapid Velocity, and diverse Variety
+1.Hadoop:
+	Hadoop is an open-source Java framework that stores and processes massive data using clusters of inexpensive hardware.Big companies like youtube use Hadoop to handle large-scale data efficiently.
+Hadoop Architecture Mainly consists of 3 components:
+1.HDFS (Hadoop Distributed File System)
+2.MapReduce
+3.YARN (Yet Another Resource Negotiator)
+HDFS:
+	HDFS is Hadoop’s primary storage system, built for high-throughput access to large datasets. It runs on inexpensive commodity hardware and stores data in large blocks to optimize performance. HDFS ensures fault tolerance and high availability across the cluster.
+
+Components in hdfs:
+	1.NameNode : The master node in HDFS that stores metadata (not actual data), manages file operations and directs clients to nearest DataNode for efficient access.
+
+	2.DataNode : Stores actual data blocks, serves read/write requests and reports to NameNode. Supports replication (default 3) for fault tolerance and scales storage and performance with more nodes.
+MapReduce:
+	MapReduce is a data processing model in Hadoop that runs on YARN. It enables fast, distributed and parallel processing by dividing tasks into two phases Map and Reduce making it efficient for handling large-scale data.
+	Map Reduce architecture is a processing framework used in Hadoop's big data ecosystem. Here's how it works:
+Map Reduce consists of two main operations:
+Map Phase: This operation takes input data and applies a function to map it. For example, if you have a list of numbers (1, 2, 3, 4, 5) and apply a function like x squared, the map operation will transform each number individually (1, 4, 9, 16, 25). In text processing, it identifies and counts word occurrences - like mapping each word "apple", "is", "red" with their initial frequency count of 1.
+Reduce Phase: This operation summarizes or aggregates the mapped results into a final output. For example, taking numbers (1, 2, 3, 4, 5) and applying a sum function reduces them to a single value (15). In the word count example, it consolidates duplicate words and their frequencies - like combining multiple "apple" occurrences into "apple: 2 times".
+
+YARN:
+	YARN is resource management layer in Hadoop ecosystem. It allows multiple data processing engines like MapReduce, Spark and others to run and share cluster resources efficiently.
+
+2.spark architecture:
+	spark is unified in memory computing framework designed to overcome hadoops disk.
+Core Components:
+Driver Program:
+	 The driver is the main process that runs the application's main() function. It creates the SparkContext (or SparkSession in modern Spark), which acts as a gateway to all Spark functionalities and coordinates execution across the cluster.
+Cluster Manager:
+	This external service is responsible for managing and allocating physical resources (CPU, memory) across the cluster. 
+Executors:
+	Executors perform the assigned tasks, store data in memory or on disk for reuse, and report their status and results back to the driver program.
+
+Hadoop is a complete ecosystem that provides data storage (HDFS) and batch processing (MapReduce), while Spark is a fast data processing engine that excels in speed and versatility by using in-memory computing
+
+Data governance and security:
+1.Data Lineage : Tracks data origin and flow.
+2.cataloging : tools like aws, glue, catalogue
+3.masking and encryption: secure sensitive data.
+
+A real-time data engineering example involves building a system to process continuous data streams , These systems use tools like Apache Kafka for ingestion, Apache Flink or Spark Streaming for processing.
