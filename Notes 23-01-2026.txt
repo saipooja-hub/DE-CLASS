@@ -1,0 +1,162 @@
+DAY-5:
+
+#Built in functions:
+	SQL provides numerous built-in functions to perform data manipulation, calculations, and analysis.
+
+#string functions:
+1.LPAD
+2.RPAD
+
+select title from sakila.film; 
+
+SELECT title, LPAD(title, 20, '*') AS left_padded
+FROM sakila.film
+LIMIT 5;
+
+SELECT title, LPAD(RPAD(title, 20, '*'),25,'*') AS left_padded
+FROM sakila.film
+LIMIT 5;
+
+#SUB-STRING:
+	The SUBSTRING() function extracts some characters from a string.
+
+SELECT title, SUBSTRING(title, 4,9)  AS short_title 
+FROM sakila.film;
+
+#CONCATINATION:
+	the process of joining two or more strings or column values into a single, combined string.
+
+SELECT CONCAT(first_name, '@', last_name) AS full_name 
+FROM sakila.customer;
+
+#LENGTH:
+
+SELECT title, LENGTH(title) AS title_length 
+FROM sakila.film
+WHERE LENGTH(title) =8;
+
+#SUBSTRING WITH LOCATE:
+		a function used to find the position of a substring within a larger string.
+
+
+select email from sakila.customer;
+
+SELECT email,
+       SUBSTRING(email, LOCATE('@', email) +1) AS domain
+FROM sakila.customer;
+
+SELECT 
+  email,
+  substring_index(SUBSTRING(email, LOCATE('@', email) + 1), '.', -1) AS domain
+FROM 
+  sakila.customer;
+
+#UPPER:
+	The UPPER() function converts a string to upper-case.
+
+select title, lower(title) as lower_titles
+FROM sakila.film;
+
+SELECT title, UPPER(title),lower(title)
+FROM sakila.film
+WHERE UPPER(title) LIKE '%LOVELY%' or UPPER(title) LIKE '%MAN';
+
+#LEFT:
+
+SELECT LEFT(title, 2) AS first_letter, right(title,3) as last_letter,  COUNT(*) AS film_count
+FROM sakila.film
+GROUP BY LEFT(title, 2), right(title,3)
+ORDER BY film_count DESC;
+
+SELECT LEFT(title,2) AS first_letter, right(title, 3) as last_letter, title 
+from sakila.film;
+
+#CASE:
+
+SELECT last_name,
+       CASE 
+           WHEN LEFT(last_name, 1) BETWEEN 'A' AND 'M' THEN 'Group A-M'
+           WHEN LEFT(last_name, 1) BETWEEN 'N' AND 'Z' THEN 'Group N-Z'
+           ELSE 'Other'
+       END AS group_label
+FROM sakila.customer;
+
+#REPLACE:
+
+SELECT title, REPLACE(title, 'A', 'x') AS cleaned_title
+FROM sakila.film
+WHERE title LIKE '%' '%';
+
+#REGEX:
+	REGEX offer powerful functionality for flexible pattern matching within string data. ^ is used as not operator.
+SELECT customer_id, last_name
+FROM sakila.customer
+WHERE last_name NOT REGEXP '[^aeiouAEIOU]{3}'; 
+
+#ends with vowel:
+SELECT lower(title)
+FROM sakila.film
+WHERE title REGEXP '[aeiouAEIOU]$';
+
+#Numerical Built-in-functions:
+SELECT title, rental_rate, rental_rate ^ 3 AS double_rate   -- debug why its allwoing string + integer
+FROM sakila.film;
+
+#count:
+
+SELECT customer_id,
+       COUNT(payment_id) AS payments,
+       SUM(amount) AS total_paid,
+       SUM(amount) / COUNT(payment_id) AS avg_payment
+       
+FROM sakila.payment
+GROUP BY customer_id;
+
+select rental_duration,cost_efficiency_dup1 from sakila.film;
+ALTER TABLE sakila.film
+ADD COLUMN cost_efficiency_dup1 DECIMAL(6,2);
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE sakila.film
+SET cost_efficiency_dup1 = rental_duration * 2
+WHERE length IS NOT NULL;
+if we want to physically store data we need to update the column and alter the data.it is called data manipulation.
+
+CEIL AND FLOOR:
+SELECT rental_rate, CEIL(rental_rate) AS ceil_value, FLOOR(rental_rate) AS floor_value
+FROM sakila.film;
+
+#RANDOM FUNCTION:
+SELECT customer_id, (RAND() * 100), FLOOR(RAND() * 100) AS random_score
+FROM sakila.customer
+LIMIT 5;
+
+#MODULUS OPERATION:
+SELECT film_id,length, MOD(length, 60) AS minutes_over_hour
+FROM sakila.film;
+
+#ROUND OF FUNCTION:
+SELECT rental_rate, ROUND(replacement_cost / rental_rate, 0),ROUND(replacement_cost / rental_rate, 1) AS ratio
+FROM sakila.film;
+
+#Find Customers Who Paid in the Last 24 Hours
+select * from sakila.payment;
+
+SELECT customer_id, amount, payment_date
+FROM sakila.payment
+WHERE payment_date >= NOW() - INTERVAL 1 DAY;
+
+SELECT customer_id, amount, payment_date
+FROM sakila.payment
+WHERE payment_date >= (
+    SELECT MAX(payment_date) - INTERVAL 10 day
+    FROM sakila.payment
+);
+IF WE DONT HAVE CURRENT DATE THEN WE CAN YOU MAX FUNCTION ,NOW IS USED FOR TODAY DATE.
+
+CASTING:HOW CAN WE CAST COLUMNS FROM DECIMAL TO INTEGER WE NEED TO CHECK?
+WE NEED TO REFER BUILT-IN-FUNCTION IN SQL.
+
+
+
