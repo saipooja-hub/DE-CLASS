@@ -1,0 +1,94 @@
+Assignment Questions-2:
+
+# Identify if there are duplicates in Customer table. Don't use customer id to check the duplicates.
+
+select email,count(*) as duplicate
+from sakila.customer
+group by email
+having count(*) > 1;
+
+# Number of times letter 'a' is repeated in film descriptions.
+
+select * from sakila.film
+
+select 
+	sum(
+	length (description)
+	-length(replace(lower(description),'a',''))
+	)as total_a_count
+from sakila.film;
+
+# Number of times each vowel is repeated in film descriptions.
+
+select * from sakila.film;
+
+select 
+sum(length(description)-length(replace(lower(description),'a','')))as a_count,
+sum(length(description)-length(replace(lower(description),'e','')))as e_count,
+sum(length(description)-length(replace(lower(description),'i','')))as i_count,
+sum(length(description)-length(replace(lower(description),'o','')))as o_count,
+sum(length(description)-length(replace(lower(description),'u','')))as u_count
+from sakila.film;
+
+# Display the payments made by each customer
+        1. Month wise
+        2. Year wise
+        3. Week wise
+
+select * from sakila.customer;
+
+select 
+	customer_id,
+	month(payment_date) as month,
+	year(payment_date) as year,
+	week(payment_date) as week,
+	count(*) as number_of_payments,
+	sum(amount) as total_amount_paid
+from sakila.payment
+group by
+	customer_id,
+	month(payment_date),
+	year(payment_date),
+	week(payment_date)
+order by
+	customer_id,
+	month,
+	year,
+	week;
+# Check if any given year is a leap year or not. You need not consider any table from sakila database. Write within the select query with hardcoded date
+
+select * from sakila.film
+
+SELECT 
+    '2026-01-01' AS input_date,
+    CASE
+        WHEN (YEAR('2026-01-01') % 400 = 0)
+          OR (YEAR('2026-01-01') % 4 = 0 
+              AND YEAR('2026-01-01') % 100 <> 0)
+        THEN 'Leap Year'
+        ELSE 'Not a Leap Year'
+    END AS leap_year_status
+FROM sakila.film
+LIMIT 1;
+
+#Display number of days remaining in the current year from today.
+
+SELECT 
+    CURDATE() AS today_date,
+    DATEDIFF(
+        CONCAT(YEAR(CURDATE()), '-12-31'),
+        CURDATE()
+    ) AS days_remaining_in_year
+FROM sakila.film
+LIMIT 1;
+
+#Display quarter number(Q1,Q2,Q3,Q4) for the payment dates from payment table.
+
+SELECT 
+    payment_id,
+    payment_date,
+    CONCAT('Q', QUARTER(payment_date)) AS payment_quarter
+FROM sakila.payment
+ORDER BY payment_date
+LIMIT 20;
+
