@@ -1,0 +1,100 @@
+DAY -7:
+
+#Example to many to many relationship:
+	In this if there is student and he registered to many courses then it comes to the many to many relationship.
+#Example to one to many relationship:
+	In this there is doctor and where he can treat many patients then it comes under one to many relationship.
+#Example to many to one relationship:
+	In this there is a customer who placed many orders then it comes under many to one relationship.
+
+self join:
+	A self join is a regular join, where the table is joined with itself.
+Examples of self join:
+#i want to know who are the employees in employee table and here manager table will have manager details which acts like the bridge table to referes the table.
+#final output table is that which has employee details like employee-id , employee name and manger-id and it will do self join by itself.
+
+JOINS:
+	Different types of joins in SQL:
+	1.Inner Join
+	2.Left Join
+	3.Right Join
+	4.Full outer Join
+	5.Full outer Join(Null)
+	6.Self Join
+	7.cross Join(cartesian Join)
+
+Inner Join:
+	The INNER JOIN keyword selects records that have matching values in both tables.
+SELECT f.title, l.name AS language
+FROM sakila.film f
+INNER JOIN sakila.language l ON f.language_id = l.language_id;
+
+Left Join:
+	The LEFT JOIN keyword returns all records from the left table, and the matching records from the right table.
+SELECT f.title, c.name AS category
+FROM sakila.film f
+LEFT JOIN sakila.film_category fc ON f.film_id = fc.film_id --it acts like a bridge table
+LEFT JOIN sakila.category c ON fc.category_id = c.category_id;
+
+Right Join:
+	The RIGHT JOIN keyword returns all records from the right table, and the matching records from the left table.
+
+Full outer Join:
+	when we try to join two tables we try to bring all the data from both the tables then we apply outer join if they match or don't match then we use outer join.
+#In my sql there is no concept called full outer join so we need to rely on concept called union.
+(many to many)
+SELECT c.customer_id, r.rental_id
+FROM sakila.customer c
+LEFT JOIN sakila.rental r ON c.customer_id = r.customer_id
+
+UNION
+
+SELECT c.customer_id, r.rental_id
+FROM sakila.customer c
+RIGHT JOIN sakila.rental r ON c.customer_id = r.customer_id;
+
+SELF JOIN:
+	A self join is a regular join, where the table is joined with itself.
+
+SELECT s1.staff_id, s2.staff_id, s1.store_id
+FROM sakila.staff s1
+JOIN sakila.staff s2 ON s1.store_id = s2.store_id
+WHERE s1.staff_id <> s2.staff_id; --not equal to
+--list all staff from store id.
+
+INNER JOIN:
+--It means only the matching records
+--We can also write inner join with WHERE EXISTS.
+
+SELECT DISTINCT p.customer_id,p.rental_id
+FROM sakila.payment p
+WHERE EXISTS (
+    SELECT 1
+    FROM sakila.rental r
+    WHERE r.customer_id = p.customer_id
+);
+
+#FALSE CONDITION:
+--The condition of the left join failed but it brings the combination of details from both tables.
+
+SELECT s.email FROM sakila.customer c
+LEFT JOIN sakila.staff s ON 1 = 0
+
+UNION
+SELECT s.email FROM sakila.staff s
+LEFT JOIN sakila.customer c ON 1 = 0;
+
+
+Normalization:
+	Normalization involves breaking down a large, complex table into smaller and simpler tables while maintaining data relationships. It is commonly used when dealing with large datasets.
+Normalization plays a crucial role in database design:
+Reduces redundancy: Redundancy is when the same information is stored multiple times, and a good way of avoiding this is by splitting data into smaller tables.
+Improves query performance: You can perform faster query execution on smaller tables that have undergone normalization.
+Minimizes update anomalies: With normalized tables, you can easily update data without affecting other records.
+Enhances data integrity: It ensures that data remains consistent and accurate.
+
+Denormalization:
+	Denormalization is the process of adding precomputed redundant data to an otherwise normalized relational database to improve read performance. 
+Eg:
+	Used in power-bi dashboards
+
