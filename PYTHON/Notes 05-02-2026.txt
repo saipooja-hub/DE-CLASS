@@ -1,0 +1,149 @@
+PYTHON:
+	Python is a high level, dynamically typed programming language. Python code allows to express very powerful ideas in very few lines of code.
+
+DATA TYPES:
+
+INTEGERS:
+	an integer (int) is a numeric data type used to represent whole numbers (positive, negative, or zero) without a fractional or decimal part.
+#a=10
+b=20
+print(a+b)
+
+There are 2 types of conversions in python:
+1.explicit conversion:
+	Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
+2.implicit conversion:
+	Implicit Type Conversion is automatically performed by the Python interpreter.
+
+#integer_number=12
+float_number=4.25
+new_number=integer_number+float_number
+print(new_number)
+
+FLOAT:
+The number that comes with the decimal value is called float
+#x=3.5
+print(x)
+
+BOOLEAN DATA TYPE:
+	Boolean value can be of two types only i.e. either True or False.
+#b1= True
+b2= False
+type(b1)
+
+STRING DATA TYPE:
+	It can be in the form of double quotations(" "),single quotations (' ')and also triple quotations '''
+#name1="my name is alice"
+print(type(name1))
+name1
+
+#string= "She said, \"It\'s a beautiful day!\""
+string
+
+COMPLEX DATA TYPE:
+	A complex number consists of a real part and an imaginary part, represented in the form:
+#J=1.0-2.0j
+print(J)
+print(type(J))
+
+VARIABLE:
+	Variables are containers for storing data values, A variable is created the moment you first assign a value to it.
+TENTH=10
+TENTH=15
+TENTH
+#Here the variable is assigned the latest value in the heap memory so the output will be 15 as it is the last value that is updated.
+
+Dynamic typing:
+In Python, variables are not bound to a specific type at declaration.the type is determined at runtime based on the assigned value.
+x = 42
+print (x)
+type(x)
+
+OPERATORS IN PYTHON:
+These perform common mathematical operations. 
++: Addition (e.g., x + y)
+-: Subtraction (e.g., x - y)
+*: Multiplication (e.g., x * y)
+/: Division (always returns a float, e.g., x / y)
+%: Modulus (returns the remainder of a division, e.g., x % y)
+**: Exponentiation (raises the first operand to the power of the second, e.g., x ** y)
+//: Floor division (returns the quotient as an integer)
+a = 10
+b = 5
+print(a+b)
+print(a-b)
+print(a*b)
+print(a/b)
+print(a%b)
+print(a**b)
+print(a//b)
+
+COMPARISION OPERATOR:
+	Comparison operators are used to compare two values
+a=10
+b=20
+print(a==b)
+print(a!=b)
+print(a>b)
+print(a<b)
+print(a>=b)
+print(a<=b)
+
+LOGICAL OPERATOR:
+	Python logical operators are used to combine or modify conditions and return a Boolean result (True or False). 
+x=True
+y=False
+print(x and y)
+print(x or y)
+print(not y)
+
+ASSIGNMENT OPERATOR:
+		Assignment operators are used to assign values to variables
+x = 5
+x += 3
+x -= 3
+x *= 3
+x /= 3
+
+INPUT FUNCTION:
+	The input() function allows user input.
+
+name=input("enter your name")
+print("hello this is " + name)
+
+F string:
+	F-string allows you to format selected parts of a string, To specify a string as an f-string, simply put an f in front of the string literal.
+name = "nancy"
+age = 22
+print(f"my name is {name},and i am {age} years old.")
+
+DOT FORMAT:
+	.format() method was a primary way to format strings. It uses placeholders within a string, which are then replaced by values passed as arguments to the method. 
+txt = "For only {price:.2f} dollars!"
+print(txt.format(price = 49))
+
+Simple Boolean expression:
+			Booleans represent one of two values: True or False.
+
+a = 200
+b = 33
+
+if b > a:
+  print("b is greater than a")
+else:
+  print("b is not greater than a")
+
+BRANCHING:
+	 The primary statements used for branching are if, elif (else if), and else.
+age = 25
+
+if age <= 12:
+    print("Child.")
+elif age <= 19:
+    print("Teenager.")
+elif age <= 35:
+    print("Young adult.")
+else:
+    print("Adult.")
+
+
