@@ -1,0 +1,58 @@
+Day-10:
+
+There is a scenario i.e There is a hospital which is maintaining medical records from few years in their database and they are like almost 10cr records and in that if i want records for one person to know his medical history from last 6months and i want only 10 records so for this how much time is required and how many records it need have and also the efficiency in order to get records we should get those records very quickly and for that we need to follow some optimization techniques and it also should be efficient for that we are using Indexing.
+
+INDEXES:
+	Indexing in SQL is a method used to speed up the retrieval of rows from a database table by creating a data structure that helps locate data quickly without scanning every single row , Indexes are essential for database performance, especially with large datasets, as they allow the database management system (DBMS) to find data much more efficiently.
+
+CREATE INDEX idx_lastname
+ON Persons (LastName);
+
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+two ways :
+1.clustered index
+2.non-clustered index
+
+1.clustered:
+	clustered indexes are the primary key columns and it has the unique identity key.
+CREATE CLUSTERED INDEX clusterof_EmployeeID ON Employees(EmployeeID);
+
+2.Non-clustered Index:
+non-clustered indexes are the non primary keys columns and then made into indexed columns and they are used in filterings for the entire execution time will become less.
+CREATE NONCLUSTERED INDEX nonclusterof _LastName ON Employees(LastName);
+
+AUTO INCREMENT:
+	Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table.
+
+CREATE TABLE Persons (
+    Personid int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (Personid)
+);
+
+EXPLAIN:
+	the EXPLAIN keyword provides a description of how the SQL queries are executed by the databases.
+
+EXPLAIN SELECT * FROM table_name;
+
+NATURAL KEY:
+By nature it is identified as a unique identifier, Natural key can act like a primary keys.
+for eg: SSN number, aadhaar number.
+
+SURROGATE KEY:
+It is system generated  so it is called surrogate key.
+for eg: employee id, student id.
+
+Query optimizing fine tuning techniques:
+#Use only necessary columns
+#Use WHERE before using GROUP BY and HAVING.
+
+
+
+
+
+

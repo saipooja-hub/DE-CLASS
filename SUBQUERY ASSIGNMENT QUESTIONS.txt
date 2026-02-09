@@ -1,0 +1,115 @@
+SUBQUERY ASSIGNMENT QUESTIONS:
+
+--display all customer details who have made more than 5 payments.
+SELECT * FROM SAKILA.PAYMENT;
+SELECT * FROM SAKILA.CUSTOMER;
+SELECT CUSTOMER_ID,FIRST_NAME,LAST_NAME,EMAIL
+FROM SAKILA.CUSTOMER
+WHERE CUSTOMER_ID IN (
+					SELECT CUSTOMER_ID 
+					FROM SAKILA.PAYMENT
+					GROUP BY CUSTOMER_ID
+					HAVING COUNT(*) > 5
+                    );
+                    
+--Find the names of actors who have acted in more than 10 films.
+SELECT * FROM SAKILA.ACTOR;
+SELECT * FROM SAKILA.FILM_ACTOR;
+SELECT FIRST_NAME,LAST_NAME
+FROM SAKILA.ACTOR
+WHERE ACTOR_ID IN( 
+				SELECT ACTOR_ID
+				FROM SAKILA.FILM_ACTOR
+				GROUP BY ACTOR_ID
+				HAVING COUNT(FILM_ID) > 10
+				);
+--Find the names of customers who never made a payment.
+SELECT * FROM SAKILA.CUSTOMER;
+SELECT * FROM SAKILA.PAYMENT;
+SELECT FIRST_NAME,LAST_NAME
+FROM SAKILA.CUSTOMER
+WHERE CUSTOMER_ID NOT IN (
+						SELECT CUSTOMER_ID
+						FROM SAKILA.PAYMENT
+						);
+SELECT COUNT(DISTINCT customer_id)
+FROM sakila.payment;
+SELECT COUNT(DISTINCT customer_id)
+FROM sakila.customer;
+--List all films whose rental rate is higher than the average rental rate of all films.
+SELECT * FROM SAKILA.FILM;
+SELECT * FROM SAKILA.RENTAL;
+SELECT FILM_ID,TITLE,RENTAL_RATE
+FROM SAKILA.FILM
+WHERE RENTAL_RATE > (
+					SELECT AVG(RENTAL_RATE)
+					FROM SAKILA.FILM
+					);
+--List the titles of films that were never rented.--@@@
+SELECT * FROM SAKILA.FILM
+SELECT * FROM SAKILA.RENTAL
+SELECT * FROM SAKILA.INVENTORY;
+select f.title
+from sakila.film f
+where not exists(
+				select 1
+				from sakila.inventory i
+				Join sakila.rental r
+				on i.inventory_id = r.inventory_id
+				where i.film_id = f.film_id
+				);
+--Display the customers who rented films in the same month as customer with ID 5.--@@@
+SELECT * FROM SAKILA.CUSTOMER
+SELECT * FROM SAKILA.FILM
+SELECT * FROM SAKILA.INVENTORY
+SELECT DISTINCT c.customer_id, c.first_name, c.last_name
+FROM customer c
+WHERE c.customer_id <> 5
+AND EXISTS (
+    SELECT 1
+    FROM rental r1
+    JOIN rental r2
+        ON MONTH(r1.rental_date) = MONTH(r2.rental_date)
+       AND YEAR(r1.rental_date) = YEAR(r2.rental_date)
+    WHERE r1.customer_id = 5
+      AND r2.customer_id = c.customer_id
+);
+--Find all staff members who handled a payment greater than the average payment amount.
+SELECT * FROM SAKILA.STAFF
+SELECT * FROM SAKILA.PAYMENT
+SELECT DISTINCT S.FIRST_NAME,S.LAST_NAME
+FROM SAKILA.STAFF S
+JOIN SAKILA.PAYMENT P 
+ON S.STAFF_ID = P.STAFF_ID
+WHERE P.AMOUNT > (
+					SELECT AVG(AMOUNT)
+					FROM SAKILA.PAYMENT
+                    );
+--Show the title and rental duration of films whose rental duration is greater than the average.
+SELECT * FROM SAKILA.FILM
+SELECT TITLE,RENTAL_DURATION
+FROM SAKILA.FILM
+WHERE RENTAL_DURATION > (
+						SELECT AVG(RENTAL_DURATION)
+						FROM SAKILA.FILM
+                        );
+--Find all customers who have the same address as customer with ID 1.
+SELECT * FROM SAKILA.CUSTOMER
+SELECT FIRST_NAME,LAST_NAME,ADDRESS_ID
+FROM SAKILA.CUSTOMER
+WHERE ADDRESS_ID = (
+					SELECT ADDRESS_ID
+					FROM SAKILA.CUSTOMER
+					WHERE CUSTOMER_ID = 1
+                    );
+--List all payments that are greater than the average of all payments.
+SELECT * FROM SAKILA.PAYMENT;
+SELECT PAYMENT_ID,CUSTOMER_ID,STAFF_ID,AMOUNT,PAYMENT_DATE
+FROM SAKILA.PAYMENT
+WHERE AMOUNT > (
+					SELECT AVG(AMOUNT)
+					FROM SAKILA.PAYMENT
+                    );
+
+
+ 
