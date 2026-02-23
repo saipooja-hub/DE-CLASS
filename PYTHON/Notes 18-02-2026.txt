@@ -1,0 +1,96 @@
+
+#MODULES AND LIBRARIES IN PYTHON:
+
+#Modules:
+	The module is a simple Python file that contains collections of functions and global variables and with having a .py extension file. It is an executable file and to organize all the modules we have the concept called Package in Python.
+
+Examples of modules:
+Datetime
+Regex
+Random etc.
+
+--demo_module.py: 
+
+	def myModule(name):
+    	print("This is My Module : "+ name)
+
+--Import module named demo_module and call the myModule function inside it.
+ 
+	import demo_module
+	demo_module.myModule("Math")
+#Libraries:
+	The library is having a collection of related functionality of codes that allows you to perform many tasks without writing your code. It is a reusable chunk of code that we can use by importing it into our program, we can just use it by importing that library and calling the method of that library with a period(.). However, it is often assumed that while a package is a collection of modules, a library is a collection of packages.
+
+Examples of Libraries: 
+Matplotlib
+Pytorch
+Pygame
+Seaborn etc.
+
+--Importing pandas library and call read_csv method using an alias of pandas:
+
+		import pandas as pd
+		df = pd.read_csv("file_name.csv")
+
+#Error and exceptionial handling:
+				Errors are problems in a program that causes the program to stop its execution. On the other hand, exceptions are raised when some internal events change the program's normal flow.
+
+#Error handling:
+		Python provides mechanisms to handle errors and exceptions using the try, except, and finally blocks. This allows for graceful handling of errors without crashing the program.
+
+--try:
+    print("code start")
+    print(1 / 0)  
+
+except:
+    print("an error occurs")
+
+finally:
+    print("eligible")
+
+#File operations in python:
+				File operations in Python involve using the built-in open() function and a variety of methods for creating, reading, writing, and deleting files.
+
+#comman file operations:
+
+--Creating and Writing to Files:
+				'w' mode to create a new file or overwrite an existing one. Use 'a' mode to add content to the end.
+--Reading from Files:
+			'r' mode to read file contents.
+# Reading the entire file:
+
+	with open("example.txt", "r") as file:
+    	content = file.read() #
+    	print(content)
+
+--Append:
+	Append adds new data to the end of the file; creates a new file if it doesn't exist.
+
+#Data Frames in python:
+			 data frame is the primary data structure for data manipulation and analysis in Python, providing a two-dimensional, mutable, tabular structure with labeled rows and columns, similar to a spreadsheet or SQL table.The pandas library provides a rich set of built-in methods for common data tasks.
+
+--Creating a DataFrame:
+			A pandas DataFrame is a common way to create one is from a Python dictionary, where keys become column names and values become the data.
+import pandas as pd
+
+data = {
+    'Name': ['Tom', 'nick', 'krish', 'jack'],
+    'Age': [20, 21, 19, 18]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+#Database connectivity with SQLite:
+					Database connectivity with SQLite in Python is achieved using the built-in sqlite3 module, which requires no external installation. The process involves creating a connection object and using a cursor object to execute SQL commands. 
+
+steps for database connectivity:
+
+1. Import and Connect to the Database.
+2. Create a Cursor Object
+3. Execute SQL Statements
+4. Insert Data
+5. Retrieve Data
+6. Close the Connection
+				
